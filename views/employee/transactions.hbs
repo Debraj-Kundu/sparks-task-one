@@ -1,0 +1,28 @@
+<h3>{{viewTitle}}</h3>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Amount Transfered</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each list}}
+    <tr>
+      <td>{{this.fullname}}</td>
+      <td>{{this.amount}}</td>
+      <td>{{this.address}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+<a class="btn btn-secondary" href="/employee/list"><i class="fa fa-list-alt"></i> View All</a>
+<!--
+
+{{this.fullname}}
+{{this.amount}}
+{{this.address}}
+
+-->
