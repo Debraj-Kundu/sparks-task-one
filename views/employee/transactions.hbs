@@ -11,9 +11,11 @@
   <tbody>
     {{#each list}}
     <tr>
+      {{#each this.transaction}}
       <td>{{this.fullname}}</td>
       <td>{{this.amount}}</td>
-      <td>{{this.address}}</td>
+      <td>{{this.time}}</td>
+      {{/each}}
     </tr>
     {{/each}}
   </tbody>
@@ -21,8 +23,10 @@
 <a class="btn btn-secondary" href="/employee/list"><i class="fa fa-list-alt"></i> View All</a>
 <!--
 
-{{this.fullname}}
-{{this.amount}}
-{{this.address}}
+"transaction": [{
+        "fullname": "Debraj Kundu",
+        "amount": "6000",
+        "time": "2016-05-18T16:00:00Z"
+    }],
 
 -->
