@@ -5,10 +5,11 @@
   <h2>To: {{employee.fullname}}</h2>
   <div class="form-group">
     <label>Amount</label>
-    <input type="text" class="form-control" value="{{employee.amount}}" name="amount" placeholder="Amount">
+    <input type="text" class="form-control" name="amount" placeholder="Amount">
   </div>
+  <h5 style="color: red;">{{msg}}</h5>
   <div class="form-group">
-    <button type="submit" class="btn btn-info"><i class="fa fa-database"></i> Submit</button>
+    <button type="submit" class="btn btn-success"><i class="fa fa-database"></i> Submit</button>
     <a class="btn btn-secondary" href="/employee/list"><i class="fa fa-list-alt"></i> View All</a>
   </div>
 </form>

@@ -1,31 +1,33 @@
-<h3>Employee List</h3>
-<a class="btn btn-secondary" href="/employee/transaction">See Transaction</a>
+<h3>Customer List</h3>
+<a class="btn btn-info" href="/employee/transaction">See Transaction</a>
 
 <table class="table table-striped col-md-8">
-  <thead>
-    <tr>
-      <th class="pr-0">Name</th>
-      <th class="pr-0">Acc. No</th>
-      <th class="pr-0">Amount</th>
-      <th class="pr-0">City</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each list}}
-    <tr>
-      <td class="pr-0" style="padding-top: 24px;">{{this.fullname}}</td>
-      <td class="pr-0" style="padding-top: 38px;">{{this._id}}</td>
-      <td class="pr-0" style="padding-top: 38px;">{{this.amount}}</td>
-      <td class="pr-0">{{this.address}}</td>
-      <td class="pr-0">
-        <button class="btn btn-primary mr-0" style="margin-top: 24px;"><a href="/employee/transfer/{{this._id}}"
-            style="color: white; text-decoration: none;">Transfer Money</a></button>
-      </td>
-      <td style="padding-top: 28px;">
-        <button class="btn btn-primary mt-10" style="margin-top: 24px;"><a href="/employee/userInfo/{{this._id}}"
-            style="color: white; text-decoration: none;">Info</a></button>
-      </td>
-    </tr>
-    {{/each}}
-  </tbody>
+  <div class="container">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Account Number</th>
+        <th>Amount</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each list}}
+      <tr>
+        <td class="pr-0" style="padding-top: 24px;">{{this.fullname}}</td>
+        <td class="pr-0" style="padding-top: 38px;">{{this._id}}</td>
+        <td class="pr-0" style="padding-top: 38px;">{{this.amount}}</td>
+        <td class="pr-0">{{this.address}}</td>
+        <td class="pr-0">
+          <button class="btn btn-success mr-0" style="margin-top: 24px;"><a href="/employee/transfer/{{this._id}}"
+              style="color: white; text-decoration: none;">Transfer Money</a></button>
+        </td>
+        <td style="padding-top: 28px;">
+          <button class="btn btn-primary mt-10" style="margin-top: 24px;"><a href="/employee/userInfo/{{this._id}}"
+              style="color: white; text-decoration: none;">Details</a></button>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </div>
 </table>

@@ -87,22 +87,33 @@ async function insertRecord(req, res) {
 }
 
 async function updateRecord(req, res) {
-  await Employee.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
-    if (!err) {
-      //res.redirect('/employee/list');
-      insertRecord(req, res);
+  const amt = await req.body.amount;
+  const user = mongooseToObj(await Employee.findById(req.body._id));
+  //console.log(typeof (req.body.amount));
+  if (amt > 10000) {
+    if (!amt) {
+      await res.render('employee/transferAmount', {
+        viewTitle: 'Transfer Amount',
+        employee: user,
+        msg: 'Enter some amount'
+      });
+    } else {
+      console.log('Not enough funds');
+      await res.render('employee/transferAmount', {
+        viewTitle: 'Transfer Amount',
+        employee: user,
+        msg: 'Not Enough Funds'
+      });
     }
-    else {
-      try {
-        res.render('employee/transferAmount', {
-          viewTitle: 'Update Employee',
-          employee: req.body
-        })
-      } catch (err) {
-        console.log('Error: ' + err);
+  }
+  else {
+    await Employee.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
+      if (!err) {
+        //res.redirect('/employee/list');
+        insertRecord(req, res);
       }
-    }
-  });
+    });
+  }
 }
 
 module.exports = router;
