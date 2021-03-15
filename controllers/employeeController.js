@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Employee = mongoose.model('Employee');
+const Transaction = mongoose.model('Transaction');
 
 const multipleMongooseToObj = (arrayOfMongooseDocuments) => {
   const tempArray = [];
@@ -29,7 +30,7 @@ router.get('/userInfo/:id', async (req, res) => {
 
 router.get('/transaction', async (req, res) => {
   try {
-    const users = multipleMongooseToObj(await Employee.find()); //have to get from transactions db
+    const users = multipleMongooseToObj(await Transaction.find()); //have to get from transactions db
     res.render('employee/transactions', {
       viewTitle: "Transactions",
       list: users
@@ -71,10 +72,25 @@ router.post('/', async (req, res) => {
   await updateRecord(req, res);
 });
 
+async function insertRecord(req, res) {
+  const e = await Employee.findById(req.body._id);
+  let employee = new Transaction();
+  employee.fullname = e.fullname;
+  employee.amount = req.body.amount;
+  employee.time = new Date();
+  employee.save((err, doc) => {
+    if (!err)
+      res.redirect('employee/list');
+    else
+      console.log('Error during record insertion: ' + err);
+  });
+}
+
 async function updateRecord(req, res) {
   await Employee.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
     if (!err) {
-      res.redirect('/employee/list');
+      //res.redirect('/employee/list');
+      insertRecord(req, res);
     }
     else {
       try {

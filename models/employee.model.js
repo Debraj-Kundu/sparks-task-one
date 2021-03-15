@@ -31,8 +31,7 @@ let employeeSchema = new mongoose.Schema({
   address: {
     type: String,
     default: true
-  },
-  transaction: [transSchema]
+  }
 });
 
 mongoose.model('Employee', employeeSchema);

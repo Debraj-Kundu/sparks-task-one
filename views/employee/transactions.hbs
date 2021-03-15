@@ -11,11 +11,9 @@
   <tbody>
     {{#each list}}
     <tr>
-      {{#each this.transaction}}
       <td>{{this.fullname}}</td>
       <td>{{this.amount}}</td>
       <td>{{this.time}}</td>
-      {{/each}}
     </tr>
     {{/each}}
   </tbody>
