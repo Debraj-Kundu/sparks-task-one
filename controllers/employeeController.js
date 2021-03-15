@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Employee = mongoose.model('Employee');
 const Transaction = mongoose.model('Transaction');
+const User = mongoose.model('User');
 
 const multipleMongooseToObj = (arrayOfMongooseDocuments) => {
   const tempArray = [];
@@ -45,8 +46,10 @@ router.get('/list', async (req, res) => {
   try {
     const user = mongooseToObj(await Employee.findOne({ email: req.body.email })); // Returns the same as user.toObject()
     const users = multipleMongooseToObj(await Employee.find()); // Return arrays where .toObject() was called on each document
+    const userAmt = mongooseToObj(await User.findById('604f63d30f7dd67647116358'));
     res.render('employee/list', {
-      list: users
+      list: users,
+      balance: userAmt.amount
     });
   } catch (err) {
     console.log('Error: ' + err);
@@ -86,28 +89,43 @@ async function insertRecord(req, res) {
   });
 }
 
+function isInt(value) {
+  return !isNaN(value) &&
+    parseInt(Number(value)) == value &&
+    !isNaN(parseInt(value, 10));
+}
+
 async function updateRecord(req, res) {
-  const amt = await req.body.amount;
+  let amt = await req.body.amount;
   const user = mongooseToObj(await Employee.findById(req.body._id));
-  //console.log(typeof (req.body.amount));
-  if (amt > 10000) {
-    if (!amt) {
-      await res.render('employee/transferAmount', {
-        viewTitle: 'Transfer Amount',
-        employee: user,
-        msg: 'Enter some amount'
-      });
-    } else {
-      console.log('Not enough funds');
-      await res.render('employee/transferAmount', {
-        viewTitle: 'Transfer Amount',
-        employee: user,
-        msg: 'Not Enough Funds'
-      });
-    }
+  const userAmt = mongooseToObj(await User.findById('604f63d30f7dd67647116358'));
+  let diff = +userAmt.amount - +amt;
+  let add = +user.amount + +amt;
+  //isNaN(parseInt(amt, 10))
+  if (!isInt(amt)) {
+    console.log('invalid number');
+    await res.render('employee/transferAmount', {
+      viewTitle: 'Transfer Amount',
+      employee: user,
+      msg: 'Enter a valid amount'
+    });
+  }
+
+  else if (diff < 0) {
+    console.log('Not enough funds');
+    await res.render('employee/transferAmount', {
+      viewTitle: 'Transfer Amount',
+      employee: user,
+      msg: 'Not Enough Funds'
+    });
   }
   else {
-    await Employee.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
+    await User.findOneAndUpdate({ _id: '604f63d30f7dd67647116358' }, { amount: String(diff) }, { new: true }, (err, doc) => {
+      if (err) {
+        console.log('prb');
+      }
+    });
+    await Employee.findOneAndUpdate({ _id: req.body._id }, { amount: String(add) }, { new: true }, (err, doc) => {
       if (!err) {
         //res.redirect('/employee/list');
         insertRecord(req, res);

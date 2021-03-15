@@ -15,3 +15,4 @@ callDB();
 
 require('./employee.model');
 require('./trans.model');
+require('./user.model');

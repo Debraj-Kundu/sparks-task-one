@@ -1,4 +1,4 @@
-<h3>{{viewTitle}}</h3>
+<h3 style="font-weight: 600; font-size: 38px;">{{viewTitle}}</h3>
 
 <input type="hidden" name="_id" value="{{employee._id}}">
 <div class="form-group">
@@ -16,8 +16,8 @@
 </div>
 <div class="form-row">
   <div class="form-group col-md-6">
-    <label>Amount</label>
-    <input type="text" class="form-control" value="{{employee.amount}}" name="amount" disabled placeholder="Amount">
+    <label>Balance</label>
+    <input type="text" class="form-control" value="{{employee.amount}}$" name="amount" disabled placeholder="Amount">
   </div>
   <div class="form-group col-md-6">
     <label>Address</label>
@@ -25,5 +25,5 @@
   </div>
 </div>
 <div class="form-group">
-  <a class="btn btn-secondary" href="/employee/list"><i class="fa fa-list-alt"></i> View All</a>
+  <a class="btn btn-secondary" href="/employee/list"><i class="fa fa-arrow-left"></i> Back</a>
 </div>

@@ -1,9 +1,10 @@
-<h3>{{viewTitle}}</h3>
+<h3 style="font-weight: 600; font-size: 38px;">{{viewTitle}}</h3>
 
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
+      <th>Account Number</th>
       <th>Amount Transfered</th>
       <th>Time</th>
     </tr>
@@ -12,13 +13,14 @@
     {{#each list}}
     <tr>
       <td>{{this.fullname}}</td>
-      <td>{{this.amount}}</td>
+      <td>{{this._id}}</td>
+      <td>{{this.amount}}$</td>
       <td>{{this.time}}</td>
     </tr>
     {{/each}}
   </tbody>
 </table>
-<a class="btn btn-secondary" href="/employee/list"><i class="fa fa-list-alt"></i> View All</a>
+<a class="btn btn-secondary" href="/employee/list"><i class="fa fa-arrow-left"></i> Back</a>
 <!--
 
 "transaction": [{
