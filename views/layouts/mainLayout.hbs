@@ -14,17 +14,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg-dark" style=" font-family: 'Recursive', sans-serif;">
-  <nav class="navbar navbar-light" style="background: #273036;">
-    <span class="navbar-brand mb-0 h1" style="
+<body class="bg-dark" style="font-family: 'Recursive', sans-serif; max-width: 1350px;">
+  <nav class="navbar navbar-light bg-dark">
+    <span class="navbar-brand m-0 h1" style="
       color: rgb(255, 218, 11);
       font-weight: 600;
       font-size: 44px;
     ">Sparks Bank</span>
+    <a class="btn btn-info" href="/employee/transaction">See Transaction</a>
   </nav>
-  <div class="row">
-    <div class="col-md-8 offset-md-2 col-xs-12 col-xs-12-offset-0 ml-xs-0"
-      style="background-color: #fff;margin-top: 25px;padding: 20px;">
+  <div id="table-cont" class="row justify-content-center">
+    <div class="col-12 col-lg-7" style="background-color: #fff;margin-top: 25px;padding: 20px;">
       {{{body}}}
     </div>
   </div>
