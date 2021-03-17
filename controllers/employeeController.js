@@ -49,7 +49,7 @@ router.get('/list', async (req, res) => {
     const userAmt = mongooseToObj(await User.findById('604f63d30f7dd67647116358'));
     res.render('employee/list', {
       list: users,
-      balance: userAmt.amount
+      balance: userAmt
     });
   } catch (err) {
     console.log('Error: ' + err);
