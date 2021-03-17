@@ -12,6 +12,27 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap" rel="stylesheet">
+  <style>
+    @media (max-width: 1500px) {
+      #home {
+        margin-left: 240px;
+        font-weight: 600;
+        font-size: 42px;
+        text-decoration: none;
+        color: #3D7DD8;
+      }
+    }
+
+    @media (max-width: 700px) {
+      #home {
+        margin-left: 180px;
+        font-weight: 600;
+        font-size: 42px;
+        text-decoration: none;
+        color: #3D7DD8;
+      }
+    }
+  </style>
 </head>
 
 <body class="bg-dark" style="font-family: 'Recursive', sans-serif; max-width: 1350px;">
@@ -22,8 +43,8 @@
       font-size: 44px;
     ">Sparks Bank</span>
   </nav>
-  <div id="table-cont" class="row justify-content-center">
-    <div class="col-12 col-lg-7" style="background-color: #fff;margin-top: 25px;padding: 20px;">
+  <div class="row justify-content-center">
+    <div id="table-cont" class="col-12 col-lg-7" style="background-color: #fff;margin-top: 25px;padding: 20px;">
       {{{body}}}
     </div>
   </div>
